@@ -45,7 +45,7 @@ def sign_up():
         user = User.query.filter_by(email=email).first()
         if user:
             flash('Email already exists.', category='error')
-            return redirect(url_for("views.home"))
+            return redirect(url_for("auth.sign_up"))
         if len(email) < 7 or "@" not in email:
             flash("Please, email length must be greater than 6, and has a '@'", category="error")
         elif len(first_name) < 2:
