@@ -1,5 +1,26 @@
 {% extends "base.html" %}
 {% block title %}Home{% endblock title %}
 {% block content %}
-<h1>Hola mundo , Pagina principal</h1>
+<h1 align="center">Notes</h1>
+<ul class="list-group list-group-flush" id="notes">
+    {% for note in user.notes %}
+        <li class="list-group-item">{{ note.note }}
+            <button aria-label="Close" type="button" class="close" onClick="deleteNote({{ note.id }})">
+                <span aria-hidden="true"><i class="fa-solid fa-delete-left"></i></span>
+            </button>
+            <button type="button" class="close" aria-label="Edit">
+                <span aria-hidden="true">
+                    <a href="edit-note/{{ note.id }}"><i class="fa-solid fa-pen-to-square"></i></a>
+                </span>
+            </button>
+        </li>
+    {% endfor %}
+</ul>
+<form method="POST">
+    <textarea name="note" id="note" class="form-control" required></textarea>
+    <br>
+    <div align="center">
+        <button type="submit" class="btn btn-primary">Add Note</button>
+    </div>
+</form>
 {% endblock content %}
